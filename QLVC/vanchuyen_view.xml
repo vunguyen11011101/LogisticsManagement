@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- khách hàng tree -->
+        <record id="view_khachhang_tree" model="ir.ui.view">
+            <field name="name">khachhang.tree</field>
+            <field name="model">khachhang</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách khách hàng">
+                    <field name="name" string="Họ tên"/>
+                    <field name="sdt" string="Số điện thoại"/>
+                    <field name="email" string="Email"/>
+                    <field name="diachi" string="Địa chỉ"/>
+                    <field name="loaikh" string="Loại khách hàng"/>
+                    <field name="ghichu" string="Ghi chú"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- khách hàng form -->
+        <record id="view_khachhang_form" model="ir.ui.view">
+            <field name="name">khachhang.form</field>
+            <field name="model">khachhang</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin khách hàng">
+                    <group>
+                        <field name="name" string="Họ tên"/>
+                        <field name="sdt" string="Số điện thoại"/>
+                        <field name="email" string="Email"/>
+                        <field name="diachi" string="Địa chỉ"/>
+                        <field name="loaikh" string="Loại khách hàng"/>
+                        <field name="ghichu" string="Ghi chú"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- kiện hàng tree -->
+        <record id="view_kienhang_tree" model="ir.ui.view">
+            <field name="name">kienhang.tree</field>
+            <field name="model">kienhang</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách kiện hàng">
+                    <field name="makien" string="Mã kiện hàng"/>
+                    <field name="tenkien" string="Tên kiện hàng"/>
+                    <field name="trongluong" string="Trọng lượng (kg)"/>
+                    <field name="kichthuoc" string="Kích thước"/>
+                    <field name="gia_tri" string="Giá trị kiện hàng"/>
+                    <field name="donhang_id" string="Đơn hàng"/>
+                    <field name="trangthai" string="Trạng thái"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- kiện hàng form -->
+        <record id="view_kienhang_form" model="ir.ui.view">
+            <field name="name">kienhang.form</field>
+            <field name="model">kienhang</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin kiện hàng">
+                    <group>
+                        <group>
+                            <field name="makien" string="Mã kiện hàng"/>
+                            <field name="tenkien" string="Tên kiện hàng"/>
+                            <field name="donhang_id" string="Đơn hàng" options="{'no_create': True}"/>
+                            <field name="trangthai" string="Trạng thái"/>
+                        </group>
+                        <group>
+                            <field name="kichthuoc" string="Kích thước"/>
+                            <field name="trongluong" string="Trọng lượng (kg)"/>
+                            <field name="gia_tri" string="Giá trị kiện hàng"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- đơn hàng tree -->
+        <record id="view_donhang_tree" model="ir.ui.view">
+            <field name="name">donhang.tree</field>
+            <field name="model">donhang</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách đơn hàng">
+                    <field name="madon" string="Mã đơn hàng"/>
+                    <field name="khachgui_id" />
+                    <field name="khachnhan_id" />
+                    <field name="doitacgiaohang_id" string="Đối tác giao hàng"/>
+                    <field name="ngaygui" string="Ngày gửi"/>
+                    <field name="ngaydukien" string="Ngày dự kiến"/>
+                    <field name="tongtrongluong" string="Tổng trọng lượng"/>
+                    <field name="tongchiphi" string="Tổng chi phí"/>
+                    <field name="trangthai" string="Trạng thái"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- đơn hàng form -->
+        <record id="view_donhang_form" model="ir.ui.view">  
+            <field name="name">donhang.form</field>
+            <field name="model">donhang</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin đơn hàng">
+                    <group>
+                        <field name="madon" string="Mã đơn hàng"/>
+                        <field name="khachgui_id" string="Khách gửi" domain="[('loaikh', '=', 'gui')]"/>
+                        <field name="khachnhan_id" string="Khách nhận" domain="[('loaikh', '=', 'nhan')]"/>
+                        <field name="doitacgiaohang_id" string="Đối tác giao hàng"/>
+                        <field name="ngaygui" string="Ngày gửi"/>
+                        <field name="ngaydukien" string="Ngày dự kiến"/>
+                        <field name="tongtrongluong" string="Tổng trọng lượng"/>
+                        <field name="tongchiphi" string="Tổng chi phí"/>
+                        <field name="trangthai" string="Trạng thái"/>
+                    </group>
+                    <notebook>
+                        <page string="Danh sách kiện hàng">
+                            <field name="kienhang_ids" readonly="1">
+                                <tree string="Kiện hàng">
+                                    <field name="tenkien" string="Tên kiện hàng"/>
+                                    <field name="trongluong" string="Trọng lượng"/>
+                                    <!-- Thêm các trường khác của kiện hàng nếu cần -->
+                                </tree>
+                                <form string="Chi tiết kiện hàng">
+                                    <group>
+                                        <field name="tenkien" string="Tên kiện hàng"/>
+                                        <field name="trongluong" string="Trọng lượng"/>
+                                        <!-- Thêm các trường khác của kiện hàng nếu cần -->
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- đối tác giao hàng tree -->
+        <record id="view_doitacgiaohang_tree" model="ir.ui.view">
+            <field name="name">doitacgiaohang.tree</field>
+            <field name="model">doitacgiaohang</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách đối tác giao hàng">
+                    <field name="name" string="Tên đối tác"/>
+                    <field name="sdt" string="Số điện thoại"/>
+                    <field name="email" string="Email"/>
+                    <field name="diachi" string="Địa chỉ"/>
+                    <field name="ghichu" string="Ghi chú"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- đối tác giao hàng form -->
+        <record id="view_doitacgiaohang_form" model="ir.ui.view">
+            <field name="name">doitacgiaohang.form</field>
+            <field name="model">doitacgiaohang</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin đối tác giao hàng">
+                    <group>
+                        <field name="name" string="Tên đối tác"/>
+                        <field name="sdt" string="Số điện thoại"/>
+                        <field name="email" string="Email"/>
+                        <field name="diachi" string="Địa chỉ"/>
+                        <field name="ghichu" string="Ghi chú"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action khách hàng -->
+        <record id="action_khachhang" model="ir.actions.act_window">
+            <field name="name">Khách hàng</field>
+            <field name="res_model">khachhang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_khachhang_tree">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">khachhang</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+		</record>
+
+        <!-- Action kiện hàng -->
+        <record id="action_kienhang" model="ir.actions.act_window">
+            <field name="name">Kiện hàng</field>
+            <field name="res_model">kienhang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_kienhang_tree">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">kienhang</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+		</record>
+
+        <!-- Action đơn hàng -->
+        <record id="action_donhang" model="ir.actions.act_window">
+            <field name="name">Đơn hàng</field>
+            <field name="res_model">donhang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_donhang_tree">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">donhang</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+		</record>
+
+        <!-- Action đối tác giao hàng -->
+        <record id="action_doitacgiaohang" model="ir.actions.act_window">
+            <field name="name">Đối tác giao hàng</field>
+            <field name="res_model">doitacgiaohang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_doitacgiaohang_tree">
+            <field name="name">Thông tin chi tiết</field>
+            <field name="res_model">doitacgiaohang</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree</field>
+		</record>
+    </data> 
+</openerp>

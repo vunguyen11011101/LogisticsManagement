@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Menu cha -->
+        <menuitem id="vanchuyen_parent" name="Quản lý vận chuyển" sequence="10"/>
+
+        <!-- Kiện hàng menu -->
+        <menuitem id="menu_kienhang_parent" name="Kiện hàng" parent="vanchuyen_parent" sequence="20"/>
+        <menuitem action="action_kienhang" id="menu_kienhang_kienhang" name="Nhập kiện hàng" parent="menu_kienhang_parent" string="Result" sequence="10"/>
+        <menuitem action="action_kienhang_tree" id="menu_kienhang_tree" name="Danh sách kiện hàng" parent="menu_kienhang_parent" string="Danh sách kiện hàng" sequence="20"/>
+
+        <!-- Khách hàng menu -->
+        <menuitem id="menu_khachhang_parent" name="Khách hàng" parent="vanchuyen_parent" sequence="30"/>
+        <menuitem action="action_khachhang" id="menu_khachhang_khachhang" name="Nhập khách hàng" parent="menu_khachhang_parent" string="Result" sequence="10"/>
+        <menuitem action="action_khachhang_tree" id="menu_khachhang_tree" name="Danh sách khách hàng" parent="menu_khachhang_parent" string="Danh sách khách hàng" sequence="20"/>
+
+        <!-- Đơn hàng menu -->
+        <menuitem id="menu_donhang_parent" name="Đơn hàng" parent="vanchuyen_parent" sequence="40"/>
+        <menuitem action="action_donhang" id="menu_donhang_donhang" name="Nhập đơn hàng" parent="menu_donhang_parent" string="Result" sequence="10"/>
+        <menuitem action="action_donhang_tree" id="menu_donhang_tree" name="Danh sách đơn hàng" parent="menu_donhang_parent" string="Danh sách đơn hàng" sequence="20"/>
+
+        <!-- Đối tác giao hàng menu -->
+        <menuitem id="menu_giaohang_parent" name="Đối tác giao hàng" parent="vanchuyen_parent" sequence="50"/>
+        <menuitem action="action_doitacgiaohang" id="menu_giaohang_giaohang" name="Nhập đơn vị đối tác giao hàng" parent="menu_giaohang_parent" string="Result" sequence="10"/>
+        <menuitem action="action_doitacgiaohang_tree" id="menu_giaohang_tree" name="Danh sách đối tác giao hàng" parent="menu_giaohang_parent" string="Danh sách đối tác giao hàng" sequence="20"/>
+    </data>
+</openerp>
+
